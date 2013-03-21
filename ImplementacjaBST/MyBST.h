@@ -58,7 +58,7 @@ private:
 public:
 	MyBST(void);					// Konstruktor domyœlny, tworzy puste drzewo
 	bool isEmpty();					// Zwraca true je¿eli drzewo jest puste, w przeciwnym razie - false
-	void insert(T x);				// Wstawia obiekt x w odpowiednie dla niego miejsce
+	bool insert(T x);				// Wstawia obiekt x w odpowiednie dla niego miejsce; false jezeli obiekt juz istnial i nie dodano
 	bool remove(T x);				// Usuwa obiekt x z drzewa; true je¿eli uda³o siê usun¹æ, false je¿eli nie (nie by³o takiego wêz³a)
 	bool contain(T x);				// Zwraca true je¿eli drzewo zawiera obiekt x
 	int getHeight();				// Zwraca wysokoœæ drzewa, dla pustego drzewa zwraca -1
@@ -504,12 +504,16 @@ bool MyBST<T>::isEmpty()
 }
 
 template <typename T>
-void MyBST<T>::insert( T x )
+bool MyBST<T>::insert( T x )
 {
 	Node* newNode = new Node(x);	// Tworzymy nowy wêze³
 
 	if (isEmpty())					// Je¿eli drzewo jest puste to nowy wêze³ jest korzeniem drzewa
+	{
 		root = newNode;
+		nrOfElements++;
+		return true;
+	}
 	else
 	{
 		Node* current = root;		// Wêze³, który aktualnie sprawdzamy, zaczynamy od korzenia
@@ -518,8 +522,13 @@ void MyBST<T>::insert( T x )
 			newNode->parent = current;
 			if (newNode->value > current->value)
 				current = current->right;
-			else
+			else if (newNode->value < current->value)
 				current = current->left;
+			else
+			{
+				delete newNode;
+				return false;	// element juz istnieje
+			}
 		}
 
 		// Po znalezieniu w³aœciwego rodzica dla nowego wêz³a...
@@ -527,8 +536,10 @@ void MyBST<T>::insert( T x )
 			newNode->parent->left = newNode;	// ...wstawiamy po odpowiedniej stronie.
 		else
 			newNode->parent->right = newNode;
+
+		nrOfElements++;
 	}
-	nrOfElements++;
+	
 }
 
 template <typename T>
