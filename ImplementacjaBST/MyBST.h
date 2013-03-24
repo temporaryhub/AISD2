@@ -1,6 +1,6 @@
 // MyBST.h
 /*
-	-------- W³asna implementacja drzewa BST na szablonach ----------
+	---- W³asna implementacja drzewa BST na szablonach ver. 1.01 ----
 	------------------------ Pawe³ Stysz 2013 -----------------------
 	----------- Zajêcia: Algorytmy i Struktury Danych cz. 2 ---------
 	-----------------------------------------------------------------
