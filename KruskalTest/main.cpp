@@ -75,7 +75,7 @@ int main()
     
     for (int i = 0; i < count; i++)
     {
-        cout << "W grafie znajdzie sie krawedz nr " << i << " pomiedzy " << graf[i][0] << " a " << graf[i][1] << " o wadze " << graf[i][2] << endl;
+        cout << "W grafie znajdzie sie krawedz nr " << wynik[i] << " pomiedzy " << graf[wynik[i]][0] << " a " << graf[wynik[i]][1] << " o wadze " << graf[wynik[i]][2] << endl;
     }
     
     return 0;
