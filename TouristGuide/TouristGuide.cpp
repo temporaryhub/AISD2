@@ -73,14 +73,10 @@ int main ()
 							else if (capacityTab[k][j] > 0 && capacityTab[i][k] > 0)
 								capacityTab[i][j] = std::max(capacityTab[i][j], std::min(capacityTab[i][k], capacityTab[k][j]));
 					}
-			
-			int result = (int)std::ceil((float)passengersToCarry / (float)(capacityTab[departure][destination]));
-			if (result <= 0)
-				result = 1;
 
 			// W tabeli pod indeksem [departure][destination] znajduja sie maksymalna ilosc pasazerow mozliwych do przetransportowania za jednym razem
 			// Teraz wystarczy podzielic ilosc pasazerow przez obliczona wartosc i wziac z tego sufit - tyle kursow bedzie trzeba wykonac zeby przewiezc wszystkich
-			printf("Scenario #%d\nMinimum Number of Trips = %d\n\n", scenarioNo++, result);
+			printf("Scenario #%d\nMinimum Number of Trips = %d\n\n", scenarioNo++, (int)std::ceil((float)passengersToCarry / (float)(capacityTab[departure][destination])));
 		}
 /*// ------- TYLKO DO TESTÓW ------------
 		printf("Ilosc pasazerow: %3d, start: %3d, koniec: %3d\n", passengersToCarry, departure, destination);
@@ -97,7 +93,7 @@ int main ()
 			std::cout << std::endl;
 		}
 		std::cout << "--------------------------------------" << std::endl;
-*/
+*/ // -----------------------------------------
 	}
 
 	return 0;
